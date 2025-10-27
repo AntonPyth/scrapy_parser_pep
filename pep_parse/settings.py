@@ -7,6 +7,21 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 from pathlib import Path
+import sys
+import asyncio
+
+
+# On Windows Python 3.8+, the default asyncio event loop is a
+# ProactorEventLoop which is incompatible with the
+# AsyncioSelectorReactor. Ensure a SelectorEventLoop policy is set
+# before Scrapy/Twisted install the reactor.
+if sys.platform == "win32":
+    try:
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    except AttributeError:
+        # Older Pythons may not have WindowsSelectorEventLoopPolicy; ignore
+        # because they don't have ProactorEventLoop as the default.
+        pass
 
 
 BOT_NAME = 'pep_parse'

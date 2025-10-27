@@ -37,9 +37,9 @@ class PepParsePipeline:
             writer = csv.writer(f, lineterminator='\n')
             writer.writerows(status_summary)
 
-        # with open(file_root, 'w', encoding='utf-8') as f:
-        #     status_summary = [('Status', 'Count')]
-        #     status_summary.extend(self.status_count.items())
-        #     status_summary.append(('Total', sum(self.status_count.values())))
-        #     writer = csv.writer(f, lineterminator='\n')
-        #     writer.writerows(status_summary)
+        with open(file_root, 'w', encoding='utf-8') as f:
+            status_summary = [('Status', 'Count')]
+            status_summary.extend(self.status_count.items())
+            status_summary.append(('Total', sum(self.status_count.values())))
+            writer = csv.writer(f, lineterminator='\n')
+            writer.writerows(status_summary)
