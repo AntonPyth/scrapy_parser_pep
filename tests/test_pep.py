@@ -37,7 +37,7 @@ def test_pep_spider_attrs():
             ['https://peps.python.org/numerical/']
         )
     ), (
-        'Убедитечь, что значение атрибута `start_urls` в классе `PepSpider` - '
+        'Убедитеcь, что значение атрибута `start_urls` в классе `PepSpider` - '
         'это список, единственным элементом которого является строка '
         '`https://peps.python.org/` или `https://peps.python.org/numerical/`.'
     )
