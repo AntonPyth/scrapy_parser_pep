@@ -26,11 +26,12 @@ TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
 FEED_EXPORT_ENCODING = 'utf-8'
 
 BASE_DIR = Path(__file__).parent.parent
-RESULTS_DIR = BASE_DIR / 'results'
+RESULTS_DIR_NAME = 'results'
+RESULTS_DIR = BASE_DIR / RESULTS_DIR_NAME
 RESULTS_DIR.mkdir(exist_ok=True)
 
 FEEDS = {
-    'results/pep_%(time)s.csv':
+    f'{RESULTS_DIR_NAME}/pep_%(time)s.csv':
     {
         'format': 'csv',
         'fields': ['number', 'name', 'status'],
