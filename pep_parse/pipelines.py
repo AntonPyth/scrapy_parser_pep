@@ -11,10 +11,11 @@ class PepParsePipeline:
 
     def __init__(self):
         self.results_dir = RESULTS_DIR
-        self.results_dir.mkdir(exist_ok=True)
+        self.status_count = defaultdict(int)
 
     def open_spider(self, spider):
-        self.status_count = defaultdict(int)
+        if spider.name == 'pep':
+            self.results_dir.mkdir(exist_ok=True)
 
     def process_item(self, item, spider):
         status = item['status']
