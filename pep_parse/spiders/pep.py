@@ -18,8 +18,9 @@ class PepSpider(scrapy.Spider):
             yield response.follow(link, callback=self.parse_pep)
 
     def parse_pep(self, response):
-        number, name = response.css(
-            '#pep-content > h1::text').get().split(' – ')
+        title_text = response.css('#pep-content > h1::text').get()
+        number, name = title_text.split(' – ')
+        number = number.replace("PEP ", "")  # Remove the "PEP " prefix
         status = response.css('dt:contains("Status") + dd abbr::text').get()
 
         yield PepParseItem(
