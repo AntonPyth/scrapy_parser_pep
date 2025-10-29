@@ -1,11 +1,7 @@
 import scrapy
 
 from pep_parse.items import PepParseItem
-from pep_parse.settings import (
-    ALLOWED_DOMAINS,
-    SPIDER_NAME,
-    START_URLS,
-)
+from pep_parse.settings import ALLOWED_DOMAINS, SPIDER_NAME, START_URLS
 
 
 class PepSpider(scrapy.Spider):

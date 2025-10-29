@@ -1,7 +1,7 @@
-from pathlib import Path
-import sys
 import asyncio
+import sys
 
+from pathlib import Path
 
 if sys.platform == "win32":
     try:
@@ -11,10 +11,9 @@ if sys.platform == "win32":
 
 
 BOT_NAME = 'pep_parse'
-SPIDERS_MODULE_PATH = f'{BOT_NAME}.spiders'
 
-SPIDER_MODULES = [SPIDERS_MODULE_PATH]
-NEWSPIDER_MODULE = SPIDERS_MODULE_PATH
+NEWSPIDER_MODULE = f'{BOT_NAME}.spiders'
+SPIDER_MODULES = [NEWSPIDER_MODULE]
 
 ALLOWED_DOMAINS = ['peps.python.org']
 SPIDER_NAME = 'pep'
