@@ -9,13 +9,17 @@ from pep_parse.settings import (
 
 class PepParsePipeline:
 
+    @classmethod
+    def from_crawler(cls, crawler):
+        if crawler.spidercls.name == 'pep':
+            RESULTS_DIR.mkdir(exist_ok=True)
+        return cls()
+
     def __init__(self):
         self.results_dir = RESULTS_DIR
-        self.status_count = defaultdict(int)
 
     def open_spider(self, spider):
-        if spider.name == 'pep':
-            self.results_dir.mkdir(exist_ok=True)
+        self.status_count = defaultdict(int)
 
     def process_item(self, item, spider):
         status = item['status']
@@ -35,8 +39,5 @@ class PepParsePipeline:
                 *self.status_count.items(),
                 ('Total', sum(self.status_count.values()))
             )
-            # status_summary = [('Status', 'Count')]
-            # status_summary.extend(self.status_count.items())
-            # status_summary.append(('Total', sum(self.status_count.values())))
             writer = csv.writer(f, lineterminator='\n')
             writer.writerows(status_summary)
